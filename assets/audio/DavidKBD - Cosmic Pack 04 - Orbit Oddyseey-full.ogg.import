@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dobmxfwl7bdrd"
+path="res://.godot/imported/DavidKBD - Cosmic Pack 04 - Orbit Oddyseey-full.ogg-d31a8e35135bf88091c438ae607e766b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/DavidKBD - Cosmic Pack 04 - Orbit Oddyseey-full.ogg"
+dest_files=["res://.godot/imported/DavidKBD - Cosmic Pack 04 - Orbit Oddyseey-full.ogg-d31a8e35135bf88091c438ae607e766b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

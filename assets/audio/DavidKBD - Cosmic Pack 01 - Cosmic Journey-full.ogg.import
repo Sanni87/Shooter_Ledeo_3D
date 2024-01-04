@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dujhj0kxikiro"
+path="res://.godot/imported/DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg-c4fc2d4a55326aa5ba4a4a6e8e425c6f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg"
+dest_files=["res://.godot/imported/DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg-c4fc2d4a55326aa5ba4a4a6e8e425c6f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

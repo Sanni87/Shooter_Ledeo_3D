@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://h5n3cm78886k"
+path="res://.godot/imported/DavidKBD - Cosmic Pack 02 - Galactic Pulse-variation4.ogg-a10117be4be1471f057972d0205fe26f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/DavidKBD - Cosmic Pack 02 - Galactic Pulse-variation4.ogg"
+dest_files=["res://.godot/imported/DavidKBD - Cosmic Pack 02 - Galactic Pulse-variation4.ogg-a10117be4be1471f057972d0205fe26f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

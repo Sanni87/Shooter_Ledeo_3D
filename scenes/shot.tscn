@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bgrnbcs3beoad"]
+
+[node name="Shot" type="Node3D"]
