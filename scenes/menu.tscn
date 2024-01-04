@@ -1,7 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfsy0ernjipn7"]
+[gd_scene load_steps=7 format=3 uid="uid://cfsy0ernjipn7"]
 
 [ext_resource type="Script" path="res://assets/scripts/menu.gd" id="1_j61n2"]
 [ext_resource type="AudioStream" uid="uid://dujhj0kxikiro" path="res://assets/audio/DavidKBD - Cosmic Pack 01 - Cosmic Journey-full.ogg" id="2_rb2d7"]
+
+[sub_resource type="Animation" id="Animation_dr6nq"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4yqhs"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e6db5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvdan"]
+_data = {
+"RESET": SubResource("Animation_e6db5"),
+"fade_in": SubResource("Animation_dr6nq"),
+"fade_out": SubResource("Animation_4yqhs")
+}
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -40,6 +92,7 @@ text = "Shooter 3D"
 layout_mode = 2
 
 [node name="Start" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Start"
 
@@ -52,16 +105,26 @@ layout_mode = 2
 text = "Copyright"
 
 [node name="Fade" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 642.0
+offset_bottom = 481.0
+color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Fade"]
+libraries = {
+"": SubResource("AnimationLibrary_kvdan")
+}
+autoplay = "fade_in"
 
 [node name="Interferences" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 642.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0)
 
 [node name="BgMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_rb2d7")
@@ -69,3 +132,4 @@ autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="animation_finished" from="Fade/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
