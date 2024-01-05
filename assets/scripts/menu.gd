@@ -11,10 +11,10 @@ func _on_start_pressed():
 
 
 func _on_exit_pressed():
-	$Fade.visible = true
+	$Fade.visible = true #Activamos la visibilidad porque la habíamos puesto a false anteriormente
 	$Fade/AnimationPlayer.play("fade_out")
 
 func _on_animation_player_animation_finished(anim_name):
 	match anim_name:
-		"fade_in": $Fade.visible = false
+		"fade_in": $Fade.visible = false #Hacemos esto para que podamos hacer click en los botones
 		"fade_out": get_tree().quit()
