@@ -11,8 +11,10 @@ func _on_start_pressed():
 
 
 func _on_exit_pressed():
+	$Fade.visible = true
 	$Fade/AnimationPlayer.play("fade_out")
 
 func _on_animation_player_animation_finished(anim_name):
 	match anim_name:
+		"fade_in": $Fade.visible = false
 		"fade_out": get_tree().quit()
