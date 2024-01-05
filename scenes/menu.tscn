@@ -105,6 +105,7 @@ layout_mode = 2
 text = "Copyright"
 
 [node name="Fade" type="ColorRect" parent="."]
+visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 642.0

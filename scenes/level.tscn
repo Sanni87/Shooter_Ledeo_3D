@@ -1,3 +1,110 @@
-[gd_scene format=3 uid="uid://ck25m4nmxug1i"]
+[gd_scene load_steps=12 format=3 uid="uid://ck25m4nmxug1i"]
+
+[ext_resource type="Script" path="res://assets/scripts/level.gd" id="1_01wr4"]
+[ext_resource type="PackedScene" uid="uid://bnrb4uy1h5pln" path="res://scenes/gui.tscn" id="1_kg22a"]
+[ext_resource type="PackedScene" uid="uid://bnylydoxwjtlj" path="res://scenes/player.tscn" id="3_bu4yv"]
+[ext_resource type="PackedScene" uid="uid://chfctfhdiqfmi" path="res://scenes/chunk.tscn" id="3_xannk"]
+
+[sub_resource type="Environment" id="Environment_80rfr"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.513726, 0.513726, 0.513726, 1)
+ssao_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_cfp0e"]
+dof_blur_far_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_gcroq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -79.6497, 0, 0.157053, 0, 0, 0, 0, 0, 0, 79.06, 0, 0.157053, 0, 0, 0, 0, 0, 0, 79.4492, 0, -2.21018, 0, 0, 0, 0, 0, 0, -79.7558, 0, -2.61053, 0, 0, 0, 0, 0, 0, -79.6497, 0, 0.157053),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2yfob"]
+size = Vector3(20.2832, 10.1851, 1.39807)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxfw5"]
+size = Vector3(1, 10.328, 16.2629)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_av266"]
+size = Vector3(20.2373, 10.516, 1.14146)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bg5rn"]
+size = Vector3(1, 10.5193, 16.3184)
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_01wr4")
+
+[node name="Gui" parent="." instance=ExtResource("1_kg22a")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 2.5)
+environment = SubResource("Environment_80rfr")
+attributes = SubResource("CameraAttributesPractical_cfp0e")
+far = 128.0
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+bake_mask = 4294967291
+
+[node name="Settings" type="Node" parent="."]
+
+[node name="BgMusic" type="AudioStreamPlayer" parent="Settings"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Settings"]
+light_energy = 0.4
+sky_mode = 1
+
+[node name="Path3D" type="Path3D" parent="Settings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -12)
+curve = SubResource("Curve3D_gcroq")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Settings/Path3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -79.6497, 0, 0.157053)
+
+[node name="Timer" type="Timer" parent="Settings"]
+
+[node name="Limits" type="Node" parent="Settings"]
+
+[node name="Front" type="StaticBody3D" parent="Settings/Limits"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Settings/Limits/Front"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 5, -7.609)
+shape = SubResource("BoxShape3D_2yfob")
+
+[node name="Right" type="StaticBody3D" parent="Settings/Limits"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Settings/Limits/Right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6974, 4.65579, -0.142895)
+shape = SubResource("BoxShape3D_gxfw5")
+
+[node name="Back" type="StaticBody3D" parent="Settings/Limits"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Settings/Limits/Back"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.092, 4.568, 7.431)
+shape = SubResource("BoxShape3D_av266")
+
+[node name="Left" type="StaticBody3D" parent="Settings/Limits"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Settings/Limits/Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.51984, 4.69501, -0.167402)
+shape = SubResource("BoxShape3D_bg5rn")
+
+[node name="Chunks" type="Node3D" parent="."]
+
+[node name="Chunk_1" parent="Chunks" instance=ExtResource("3_xannk")]
+
+[node name="Chunk_2" parent="Chunks" instance=ExtResource("3_xannk")]
+
+[node name="Chunk_3" parent="Chunks" instance=ExtResource("3_xannk")]
+
+[node name="Chunk_4" parent="Chunks" instance=ExtResource("3_xannk")]
+
+[node name="Player" parent="." instance=ExtResource("3_bu4yv")]
+
+[connection signal="timeout" from="Settings/Timer" to="." method="_on_timer_timeout"]

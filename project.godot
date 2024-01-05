@@ -27,6 +27,10 @@ window/size/viewport_height=480
 window/size/resizable=false
 window/stretch/mode="viewport"
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [layer_names]
 
 avoidance/layer_1="Player"
